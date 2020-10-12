@@ -1830,6 +1830,12 @@ int _set_memory_uc(unsigned long addr, int numpages)
 				    0);
 }
 
+/**
+ * 将从addr开始的numpages个页面的页表项状态置为uc，uncached，
+ * 也就是绕过cpu cache，访问的时候直达内存。
+ * 注意，这会非常影响性能。
+ * addr是虚拟地址。
+ */
 int set_memory_uc(unsigned long addr, int numpages)
 {
 	int ret;
