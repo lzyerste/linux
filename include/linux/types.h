@@ -183,6 +183,9 @@ typedef struct {
 } atomic64_t;
 #endif
 
+/**
+  * 内核双链表数据结构。
+  */
 struct list_head {
 	struct list_head *next, *prev;
 };
