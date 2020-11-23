@@ -635,9 +635,12 @@ struct task_struct {
 #endif
 	int				on_rq;
 
+	// 动态优先级
 	int				prio;
+	// 静态优先级
 	int				static_prio;
 	int				normal_prio;
+	// 实时调度优先级
 	unsigned int			rt_priority;
 
 	const struct sched_class	*sched_class;
@@ -657,8 +660,10 @@ struct task_struct {
 	unsigned int			btrace_seq;
 #endif
 
+	// 调度策略，如SCHED_NORMAL, SCHED_RR, SCHED_FIFO
 	unsigned int			policy;
 	int				nr_cpus_allowed;
+	// 限定CPU亲和性
 	cpumask_t			cpus_allowed;
 
 #ifdef CONFIG_PREEMPT_RCU
@@ -765,7 +770,9 @@ struct task_struct {
 	/*
 	 * Children/sibling form the list of natural children:
 	 */
+	// 作为所有孩子的链表头，孩子间则是通过sibling串起来。
 	struct list_head		children;
+	// 连接兄弟，同一个父节点
 	struct list_head		sibling;
 	struct task_struct		*group_leader;
 

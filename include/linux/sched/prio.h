@@ -23,6 +23,7 @@
 #define MAX_RT_PRIO		MAX_USER_RT_PRIO
 
 #define MAX_PRIO		(MAX_RT_PRIO + NICE_WIDTH)
+// 中间默认是120
 #define DEFAULT_PRIO		(MAX_RT_PRIO + NICE_WIDTH / 2)
 
 /*
