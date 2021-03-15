@@ -236,6 +236,7 @@ static inline int get_boot_cpu_id(void)
 # define smp_processor_id() __smp_processor_id()
 #endif
 
+// 禁止抢占，防止获取了0号cpu，却到1号cpu去执行
 #define get_cpu()		({ preempt_disable(); __smp_processor_id(); })
 #define put_cpu()		preempt_enable()
 
