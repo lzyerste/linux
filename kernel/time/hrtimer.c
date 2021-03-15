@@ -1768,8 +1768,10 @@ static enum hrtimer_restart hrtimer_wakeup(struct hrtimer *timer)
 		container_of(timer, struct hrtimer_sleeper, timer);
 	struct task_struct *task = t->task;
 
+	// 表示休眠任务完成
 	t->task = NULL;
 	if (task)
+		// 唤醒进程，task有可能为NULL么？
 		wake_up_process(task);
 
 	return HRTIMER_NORESTART;
@@ -1880,6 +1882,7 @@ static int __sched do_nanosleep(struct hrtimer_sleeper *t, enum hrtimer_mode mod
 		hrtimer_cancel(&t->timer);
 		mode = HRTIMER_MODE_ABS;
 
+	// timer到期执行的函数会把t->task置为NULL
 	} while (t->task && !signal_pending(current));
 
 	__set_current_state(TASK_RUNNING);
